@@ -1,61 +1,50 @@
-# Fisio Plenium - Modernización & Dashboard de Reservas 🏥✨
+# Fisio Plenium - Modernización y Dashboard de Reservas
 
-Este proyecto representa la evolución y modernización de una aplicación de gestión para una clínica de fisioterapia. Originalmente desarrollado en PHP clásico y Vanilla JS, ha sido transformado en una **Single Page Application (SPA)** moderna utilizando las últimas tecnologías del ecosistema Vue.
+Este proyecto representa la evolución y modernización de una aplicación de gestión para una clínica de fisioterapia. Originalmente desarrollado en PHP clásico y Vanilla JS, ha sido transformado en una Single Page Application (SPA) moderna utilizando el ecosistema Vue 3.
 
-[![Vue](https://img.shields.io/badge/Vue.js-3.x-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)](https://vuejs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-Latest-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![Pinia](https://img.shields.io/badge/Pinia-Store-FFE066?style=for-the-badge&logo=vuedotjs&logoColor=black)](https://pinia.vuejs.org/)
+## El Desafío: Migración y Escalabilidad
 
-## 🚀 El Desafío: Migración y Escalabilidad
+El objetivo principal fue migrar la lógica de negocio y la interfaz de usuario a una arquitectura más robusta y mantenible, demostrando competencias en:
 
-El objetivo principal fue migrar la lógica de negocio y la interfaz de usuario a una arquitectura más robusta y mantenible, demostrando habilidades en:
+1. Migración de Tech Stack: Transición de una arquitectura acoplada en PHP a una estructura desacoplada Frontend (Vue) y Backend (API PHP).
+2. Tipado Estricto: Implementación de TypeScript para garantizar la integridad de los modelos de datos.
+3. gestión de Estado: Uso de Pinia para la persistencia del carrito de compras y la sesión de usuario.
+4. Diseño Profesional: Interfaz moderna con estética glassmorphism, tipografía Outfit y transiciones fluidas.
 
-1.  **Migración de Tech Stack**: De PHP/JS acoplado a una arquitectura desacoplada Frontend (Vue) + Backend (API PHP).
-2.  **Tipado Estricto**: Implementación total de **TypeScript** para garantizar la integridad de los datos de servicios y reservas.
-3.  **Estado Global**: Gestión del carrito de compras y autenticación mediante **Pinia**.
-4.  **Diseño Premium**: Interfaz moderna con estética *glassmorphism*, tipografía Outfit y animaciones fluidas.
-
-## 🛠️ Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 ### Frontend
-- **Vue 3 (Composition API)**: Framework principal.
-- **TypeScript**: Tipado estricto para modelos de datos e interfaces.
-- **Pinia**: Gestión de estado persistente (Carrito y Auth).
-- **Vue Router**: Sistema de navegación con protectores de rutas (Guards).
-- **Axios**: Comunicación asíncrona con la API.
-- **Bootstrap 5**: Base de estilos personalizada con CSS moderno.
+- Vue 3 (Composition API): Framework principal para la construcción de la interfaz.
+- TypeScript: Tipado estricto para modelos de datos e interfaces de servicios.
+- Pinia: Gestión de estado global y persistente.
+- Vue Router: Sistema de navegación con protectores de rutas (Guards).
+- Axios: Cliente HTTP para la comunicación con la API.
+- Bootstrap 5: Base de estilos personalizada.
 
-### Backend & DB
-- **PHP 8 (API)**: Endpoints RESTful creados específicamente para el frontend.
-- **MySQL**: Base de datos relacional para servicios, usuarios y pedidos.
-- **PDO**: Consultas seguras y preparadas para evitar inyecciones SQL.
+### Backend y Base de Datos
+- PHP 8 (API): Endpoints RESTful desarrollados para la interacción con el frontend.
+- MySQL: Almacenamiento relacional de servicios, usuarios y reservas.
+- PDO: Gestión segura de consultas para prevenir inyecciones SQL.
 
-## ✨ Características Principales
+## Características Principales
 
-- **Catálogo Dinámico**: Gestión de servicios de fisioterapia cargados en tiempo real desde DB.
-- **Sistema de Reservas**: Carrito de servicios con persistencia en `localStorage`.
-- **Panel de Administración**: 
-  - Gestión completa de pedidos.
-  - Cambio de estados (Confirmado/Cancelado) en tiempo real.
-- **Autenticación y Seguridad**: 
-  - Sistema de Login con roles.
-  - Protección de rutas: Solo administradores pueden acceder al dashboard.
-- **Resiliencia (Modo Demo)**: Sistema de fallback que permite mostrar el catálogo incluso si el servidor de base de datos no está disponible.
+- Catálogo Dinámico: Carga asíncrona de servicios de fisioterapia desde la base de datos.
+- Sistema de Reservas: Gestión de carrito de servicios con persistencia en localStorage.
+- Panel de Administración: Dashboard para la gestión de pedidos y actualización de estados en tiempo real.
+- Autenticación y Seguridad: Sistema de login centralizado con protección de rutas para perfiles administrativos.
+- Resiliencia del Sistema: Mecanismo de fallback para garantizar el funcionamiento del catálogo en caso de indisponibilidad del servidor.
 
-## 📦 Instalación y Uso
+## Instalación y Configuración
 
-1. **Requisitos**: XAMPP (Apache + MySQL) y Node.js.
-2. **Backend**: 
-   - Clona este repo en tu carpeta `htdocs`.
-   - Importa el archivo `fisio_plenium.sql` en phpMyAdmin.
-3. **Frontend**:
-   ```bash
-   cd frontend
-   npm install
-   npm run dev
-   ```
-4. Abre `http://localhost:5173`.
+1. Requisitos: Entorno PHP (Apache + MySQL) y Node.js.
+2. Configuración del Backend:
+   - Alojar el proyecto en el directorio del servidor web.
+   - Importar el esquema de base de datos contenido en fisio_plenium.sql.
+3. Configuración del Frontend:
+   - Acceder al directorio frontend.
+   - Ejecutar npm install para instalar dependencias.
+   - Ejecutar npm run dev para iniciar el servidor de desarrollo.
+4. Acceso: La aplicación estará disponible por defecto en http://localhost:5173.
 
 ---
-*Desarrollado como proyecto final de Ciclo Superior DAW, modernizado para exhibición en Portfolio.*
+Proyecto de Ciclo Superior en Desarrollo de Aplicaciones Web, modernizado con tecnologías de vanguardia para su exhibición profesional.
