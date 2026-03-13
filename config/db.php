@@ -17,9 +17,13 @@ $options = [
 try {
   $pdo = new PDO($dsn, $DB_USER, $DB_PASS, $options);
 } catch (Throwable $e) {
-  http_response_code(500);
-  echo "<h1>Error de conexión</h1>";
-  echo "<p>No se pudo conectar a la base de datos <code>$DB_NAME</code>.</p>";
-  echo "<pre style='white-space:pre-wrap'>".$e->getMessage()."</pre>";
+  // No imprimir HTML en archivos de API. Enviar JSON si es posible.
+  if (str_contains($_SERVER['REQUEST_URI'], '/api/')) {
+    header('Content-Type: application/json');
+    echo json_encode(['success' => false, 'message' => 'Error de conexión DB: ' . $e->getMessage()]);
+  } else {
+    echo "<h1>Error de conexión</h1>";
+    echo "<p>No se pudo conectar a la base de datos.</p>";
+  }
   exit;
 }
