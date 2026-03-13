@@ -1,0 +1,91 @@
+/* Enlace de salto accesible */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0.5rem 0.75rem;
+  background: #ffcc00;
+  color: #222;
+  z-index: 10000;
+  border-radius: 0.5rem;
+  margin: 6px;
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+  min-height: 28vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(80% 80% at 50% 20%, #2d8cff 0%, #0b5ed7 80%);
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../img/logo.webpp") center/contain no-repeat;
+  filter: blur(6px) saturate(0.9);
+  transform: scale(1.08);
+  opacity: 0.22;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35));
+}
+.hero .content {
+  position: relative;
+  z-index: 1;
+  padding: 18px;
+}
+.hero h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+.hero p {
+  margin: 0;
+  font-size: 1rem;
+  opacity: 0.95;
+}
+.hero .tagline {
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+
+/* Logo en hero */
+.logo-hero {
+  height: 56px;
+  width: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  background: #ffffff22;
+  padding: 4px;
+}
+
+/* Accesibilidad: foco visible */
+:focus-visible {
+  outline: 3px solid #ffcc00;
+  outline-offset: 2px;
+}
+
+/* Imágenes de las tarjetas de servicios */
+.card-img-top {
+  height: 200px;
+  width: 100%;
+  object-fit: cover; /* recorta la imagen sin deformarla */
+}

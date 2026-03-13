@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Build
+frontend/dist/
+dist/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+api/*.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# XAMPP/Local specific (optional, but safe)
+php/
+apache/
+mysql/
+tmp/
