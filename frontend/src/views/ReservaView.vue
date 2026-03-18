@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { useCartStore } from '../stores/cart';
+import { useAuthStore } from '../stores/auth';
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
+
+const authStore = useAuthStore();
+const { user } = storeToRefs(authStore);
 
 import axios from 'axios';
 
@@ -50,6 +54,7 @@ const handleSubmit = async () => {
   try {
     const payload = {
       ...form.value,
+      usuario_id: user.value?.id,
       total: totalAmount.value,
       items: Object.values(items.value)
     };

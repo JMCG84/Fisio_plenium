@@ -25,7 +25,11 @@ export interface Pedido {
   total: number;
   estado: 'pendiente' | 'confirmado' | 'cancelado';
   creado_en: string;
+  telefono?: string;
+  fecha_cita?: string;
+  mensaje?: string;
   usuario_nombre?: string;
+  usuario_email?: string;
   lineas?: PedidoLinea[];
 }
 

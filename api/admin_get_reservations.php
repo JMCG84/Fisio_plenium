@@ -8,8 +8,8 @@ header('Access-Control-Allow-Methods: GET');
 require_once __DIR__ . '/../config/db.php';
 
 try {
-    // 1. Obtener todos los pedidos
-    $sqlPedidos = "SELECT p.*, u.nombre as usuario_nombre 
+    // 1. Obtener todos los pedidos con info extra
+    $sqlPedidos = "SELECT p.*, u.nombre as usuario_nombre, u.email as usuario_email 
                    FROM pedidos p 
                    LEFT JOIN usuarios u ON p.usuario_id = u.id 
                    ORDER BY p.creado_en DESC";

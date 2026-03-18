@@ -16,6 +16,9 @@ CREATE TABLE usuarios (
   creado_en      TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
+INSERT INTO usuarios (nombre, email, password_hash, rol) 
+VALUES ('Administrador', 'admin@plenium.com', 'admin123', 'admin');
+
 CREATE INDEX idx_usuarios_email ON usuarios(email);
 
 -- 2) SERVICIOS: catálogo de la clínica
