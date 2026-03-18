@@ -1,69 +1,51 @@
-# Fisio Plenium - Modernización y Dashboard de Reservas
+# Fisio Plenium - Proyecto Final de Grado Superior
 
-Este proyecto representa la evolución y modernización de una aplicación de gestión para una clínica de fisioterapia. Originalmente desarrollado en PHP clásico y Vanilla JS, ha sido transformado en una Single Page Application (SPA) moderna utilizando el ecosistema Vue 3.
+Este proyecto es el resultado de la migracion y modernizacion de una aplicacion de gestion para una clinica de fisioterapia. Se trata del proyecto final de mi Grado Superior, el cual ha sido transformado desde una arquitectura base en PHP clasico hacia una aplicacion moderna utilizando Vue 3 y una API desacoplada.
 
-## El Desafío: Migración y Escalabilidad
+Esta evolucion se ha llevado a cabo con el apoyo de herramientas de Inteligencia Artificial, aplicando los conocimientos y tecnicas adquiridas en el curso de desarrollo con IA para optimizar el flujo de trabajo, mejorar la calidad del codigo y acelerar la transicion hacia tecnologias de vanguardia.
 
-El objetivo principal fue migrar la lógica de negocio y la interfaz de usuario a una arquitectura más robusta y mantenible, demostrando competencias en:
+## Estructura del Proyecto
 
-1. Migración de Tech Stack: Transición de una arquitectura acoplada en PHP a una estructura desacoplada Frontend (Vue) y Backend (API PHP).
-2. Tipado Estricto: Implementación de TypeScript para garantizar la integridad de los modelos de datos.
-3. gestión de Estado: Uso de Pinia para la persistencia del carrito de compras y la sesión de usuario.
-4. Diseño Profesional: Interfaz moderna con estética glassmorphism, tipografía Outfit y transiciones fluidas.
+El repositorio esta organizado de la siguiente manera para separar claramente las responsabilidades del sistema:
 
-## Tecnologías Utilizadas
+1. Directorio Raiz: Contiene los archivos legacy en PHP y la logica de servidor que sirve de base al sistema.
+2. Directorio api/: Aloja los endpoints RESTful desarrollados en PHP que gestionan la comunicacion entre el frontend y la base de datos MySQL.
+3. Directorio config/: Contiene los archivos de configuracion de la base de datos y constantes del sistema.
+4. Directorio frontend/: Aplicacion Single Page Application (SPA) desarrollada con Vue 3, TypeScript y Pinia.
+5. Archivo fisio_plenium.sql: Script de creacion de la base de datos que incluye la estructura de tablas y los datos de inicializacion necesarios.
 
-### Frontend
-- Vue 3 (Composition API): Framework principal para la construcción de la interfaz.
-- TypeScript: Tipado estricto para modelos de datos e interfaces de servicios.
-- Pinia: Gestión de estado global y persistente.
-- Vue Router: Sistema de navegación con protectores de rutas (Guards).
-- Axios: Cliente HTTP para la comunicación con la API.
-- Bootstrap 5: Base de estilos personalizada.
+## Tecnologias Utilizadas
 
-### Backend y Base de Datos
-- PHP 8 (API): Endpoints RESTful desarrollados para la interacción con el frontend.
-- MySQL: Almacenamiento relacional de servicios, usuarios y reservas.
-- PDO: Gestión segura de consultas para prevenir inyecciones SQL.
+### Frontend (Vue 3 Ecosystem)
 
-## Características Principales
+- Vue 3 (Composition API): Framework principal para la reactividad de la interfaz.
+- TypeScript: Implementacion de tipado estricto para modelos de datos.
+- Pinia: Gestion de estado global para el carrito de servicios y sesiones de usuario.
+- Vue Router: Control de navegacion y proteccion de rutas mediante Guards.
+- Bootstrap 5: Base de estilos con personalizacion de diseño moderno.
 
-- Catálogo Dinámico: Carga asíncrona de servicios de fisioterapia desde la base de datos.
-- Sistema de Reservas: Gestión de carrito de servicios con persistencia en localStorage.
-- Panel de Administración: Dashboard para la gestión de pedidos y actualización de estados en tiempo real.
-- Autenticación y Seguridad: Sistema de login centralizado con protección de rutas para perfiles administrativos.
-- Resiliencia del Sistema: Mecanismo de fallback para garantizar el funcionamiento del catálogo en caso de indisponibilidad del servidor.
+### Backend y Persistencia
 
-## Instalación y Configuración
+- PHP 8: Desarrollo de la API para la gestion de servicios y reservas.
+- MySQL: Motor de base de datos relacional.
+- PDO: Acceso seguro a datos para prevenir vulnerabilidades de seguridad.
 
-1. Requisitos: Entorno PHP (Apache + MySQL) y Node.js.
-2. Configuración del Backend:
-   - Alojar el proyecto en el directorio del servidor web.
-   - Importar el esquema de base de datos contenido en fisio_plenium.sql.
-3. Configuración del Frontend:
-   - Acceder al directorio frontend.
-   - Ejecutar npm install para instalar dependencias.
+## Acceso al Panel de Administracion
+
+Para realizar pruebas en el panel de gestion de reservas, se han habilitado las siguientes credenciales de administrador por defecto:
+
+- Usuario: admin@plenium.com
+- Contrasena: admin123
+
+## Instrucciones de Instalacion
+
+1. Requisitos: Servidor local (XAMPP o similar) con PHP y MySQL, ademas de Node.js instalado.
+2. Configuracion de Base de Datos: Importar el archivo fisio_plenium.sql en un servidor MySQL.
+3. Despliegue del Backend: Alojar el contenido de la raiz en el directorio publico del servidor (htdocs).
+4. Ejecucion del Frontend:
+   - Acceder a la carpeta frontend/.
+   - Ejecutar npm install para las dependencias.
    - Ejecutar npm run dev para iniciar el servidor de desarrollo.
-4. Acceso: La aplicación estará disponible por defecto en http://localhost:5173.
+5. Acceso: Navegar a la direccion local proporcionada por el servidor de desarrollo (por defecto http://localhost:5173).
 
-## Configuración de Datos Iniciales
-
-Para que el sistema de login y catálogo funcione, asegúrate de ejecutar estas sentencias SQL en tu base de datos:
-
-```sql
--- Insertar un administrador por defecto (password: admin)
-INSERT INTO usuarios (nombre, email, password_hash, rol) 
-VALUES ('Administrador', 'admin@fisio.com', 'admin', 'admin');
-
--- Insertar servicios iniciales
-INSERT INTO servicios (nombre, descripcion, precio, activo) VALUES 
-('Fisioterapia deportiva', 'Optimiza tu rendimiento.', 45.00, 1),
-('Fisioterapia traumatológica', 'Lesiones óseas y articulares.', 50.00, 1),
-('Fisioterapia pediátrica', 'Desarrollo motor infantil.', 48.00, 1),
-('Fisioterapia respiratoria', 'Mejora función pulmonar.', 42.00, 1),
-('Suelo pélvico', 'Rehabilitación postparto.', 50.00, 1),
-('Osteopatía', 'Equilibrio corporal global.', 55.00, 1);
-```
-
----
-Proyecto de Ciclo Superior en Desarrollo de Aplicaciones Web, modernizado con tecnologías de vanguardia para su exhibición profesional.
+Este proyecto demuestra la capacidad de integrar metodos tradicionales de desarrollo con nuevas tecnicas asistidas por IA para lograr productos de software mas robustos y profesionales.
