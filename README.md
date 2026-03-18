@@ -30,22 +30,45 @@ El repositorio esta organizado de la siguiente manera para separar claramente la
 - MySQL: Motor de base de datos relacional.
 - PDO: Acceso seguro a datos para prevenir vulnerabilidades de seguridad.
 
-## Acceso al Panel de Administracion
+## Versiones del Proyecto y Acceso
 
-Para realizar pruebas en el panel de gestion de reservas, se han habilitado las siguientes credenciales de administrador por defecto:
+Este proyecto permite visualizar la evolución desde una arquitectura tradicional hacia una moderna. Para ver las distintas versiones, sigue estas instrucciones:
 
-- Usuario: admin@plenium.com
-- Contrasena: admin123
+### 1. Versión Original (Legacy - PHP/JS)
+Es la versión clásica servida directamente por Apache (XAMPP).
+- **Acceso:** [http://localhost/fisio_Plenium/](http://localhost/fisio_Plenium/) (Suponiendo que la carpeta está en `htdocs`).
+- **Características:** Renderizado en servidor con PHP, lógica de carrito en JavaScript Vanilla.
 
-## Instrucciones de Instalacion
+### 2. Versión Moderna (Vue 3 + Vite)
+Es la versión rediseñada con componentes reactivos y estética premium.
+- **Acceso:** [http://localhost:5173/](http://localhost:5173/)
+- **Instrucciones para iniciar:**
+  1. Abre una terminal en la carpeta `/frontend`.
+  2. Ejecuta `npm install` (solo la primera vez).
+  3. Ejecuta `npm run dev`.
+- **Características:** SPA (Single Page Application), TypeScript, Pinia para el estado global y diseño visual avanzado.
 
-1. Requisitos: Servidor local (XAMPP o similar) con PHP y MySQL, ademas de Node.js instalado.
-2. Configuracion de Base de Datos: Importar el archivo fisio_plenium.sql en un servidor MySQL.
-3. Despliegue del Backend: Alojar el contenido de la raiz en el directorio publico del servidor (htdocs).
-4. Ejecucion del Frontend:
-   - Acceder a la carpeta frontend/.
-   - Ejecutar npm install para las dependencias.
-   - Ejecutar npm run dev para iniciar el servidor de desarrollo.
-5. Acceso: Navegar a la direccion local proporcionada por el servidor de desarrollo (por defecto http://localhost:5173).
+> [!NOTE]
+> Ambas versiones comparten la misma base de datos MySQL y la misma lógica de negocio a través de la API situada en `/api`.
 
-Este proyecto demuestra la capacidad de integrar metodos tradicionales de desarrollo con nuevas tecnicas asistidas por IA para lograr productos de software mas robustos y profesionales.
+### Acceso al Panel de Administración
+
+Para probar las funcionalidades de gestión, puedes usar estas credenciales:
+- **Usuario:** `admin@plenium.com`
+- **Contraseña:** `admin123`
+
+---
+
+## Instrucciones de Instalación
+
+1. **Requisitos:** Servidor local (XAMPP o similar) con PHP y MySQL, además de Node.js instalado.
+2. **Configuración de Base de Datos:** Importar el archivo `fisio_plenium.sql` en un servidor MySQL.
+3. **Despliegue del Backend:** Alojar el contenido de la raíz en el directorio público del servidor (ej. `htdocs/fisio_Plenium/`).
+4. **Ejecución del Frontend (Vue):**
+   - Acceder a la carpeta `frontend/`.
+   - Ejecutar `npm install` para las dependencias.
+   - Ejecutar `npm run dev` para iniciar el servidor de desarrollo.
+5. **Acceso:** Navegar a la dirección proporcionada por Vite (por defecto `http://localhost:5173`).
+
+---
+Este proyecto demuestra la capacidad de integrar métodos tradicionales de desarrollo con nuevas técnicas asistidas por IA para lograr productos de software más robustos y profesionales.
