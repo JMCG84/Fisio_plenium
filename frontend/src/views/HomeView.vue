@@ -40,12 +40,12 @@ onMounted(fetchServices);
 <template>
   <div class="home">
     <!-- Hero Section -->
-    <header class="hero-section py-5 mb-5 text-center bg-white">
-      <div class="container py-lg-5">
+    <header class="hero-section py-3 mb-3 text-center">
+      <div class="container py-lg-3">
         <h1 class="display-3 fw-bold mb-3 animate-fade-in shadow-text">
           Tu Salud en <span class="gradient-text">Plenitud</span>
         </h1>
-        <p class="lead text-muted mb-4 mx-auto animate-fade-in" style="max-width: 600px; animation-delay: 0.2s">
+        <p class="lead text-muted mb-3 mx-auto animate-fade-in" style="max-width: 600px; animation-delay: 0.2s">
           Especialistas en fisioterapia avanzada. Reserva tu sesión hoy y siente la diferencia de un cuidado personalizado.
         </p>
         <div class="tagline-badge animate-fade-in" style="animation-delay: 0.4s">
@@ -55,7 +55,7 @@ onMounted(fetchServices);
     </header>
 
     <!-- Services Grid -->
-    <section class="container mb-5">
+    <section class="container mb-3">
       <div class="row align-items-center mb-4 px-3">
         <div class="col">
           <h2 class="h3 fw-bold mb-0">Nuestros Servicios</h2>
@@ -72,7 +72,7 @@ onMounted(fetchServices);
         {{ error }}
       </div>
 
-      <div v-else class="row g-4 px-3">
+      <div v-else class="row g-3 px-3">
         <ServiceCard 
           v-for="servicio in servicios" 
           :key="servicio.id" 

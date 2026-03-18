@@ -2,6 +2,7 @@
 import { RouterView } from 'vue-router';
 import AppNavbar from './components/AppNavbar.vue';
 import CartSidebar from './components/CartSidebar.vue';
+import AppFooter from './components/AppFooter.vue';
 </script>
 
 <template>
@@ -18,12 +19,7 @@ import CartSidebar from './components/CartSidebar.vue';
 
     <CartSidebar />
     
-    <footer class="py-5 mt-5 bg-dark text-light">
-      <div class="container text-center">
-        <p class="mb-1">© 2025 Clínica de Fisioterapia Plenium</p>
-        <p class="text-muted small">Equilibramos tu salud para una vida en plenitud</p>
-      </div>
-    </footer>
+    <AppFooter />
   </div>
 </template>
 

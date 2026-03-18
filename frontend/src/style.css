@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap");
 
 :root {
   --primary: #004aad;
@@ -12,10 +12,23 @@
   --glass: rgba(255, 255, 255, 0.8);
   --shadow: 0 4px 20px rgba(0, 74, 173, 0.1);
   --radius: 16px;
+  --nav-footer-bg: rgba(255, 255, 255, 0.9);
+  --border-color: rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode {
+  --background: #0f172a;
+  --surface: #1e293b;
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
+  --glass: rgba(15, 23, 42, 0.8);
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --nav-footer-bg: rgba(30, 41, 59, 0.95);
+  --border-color: rgba(255, 255, 255, 0.1);
 }
 
 body {
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   background-color: var(--background);
   color: var(--text);
   margin: 0;
@@ -25,13 +38,14 @@ body {
 .gradient-text {
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .premium-card {
   background: var(--surface);
   border-radius: var(--radius);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: var(--shadow);
 }
@@ -58,10 +72,10 @@ body {
 }
 
 .glass-nav {
-  background: var(--glass);
+  background: var(--nav-footer-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -69,8 +83,14 @@ body {
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fade-in {
