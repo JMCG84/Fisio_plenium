@@ -8,12 +8,24 @@ header('Access-Control-Allow-Methods: GET');
 require_once __DIR__ . '/../config/db.php';
 
 try {
-    $stmt = $pdo->query("SELECT id, nombre, descripcion, precio, 'fisio-deportiva.jpg' as archivo FROM servicios WHERE activo = 1");
+    $stmt = $pdo->query("SELECT id, nombre, descripcion, precio FROM servicios WHERE activo = 1");
     $services = $stmt->fetchAll();
-    
-    // Note: 'archivo' is mapped to a default for now as it's not in the original SQL schema, 
-    // but we can update the SQL to include it later.
-    
+
+    // Map IDs to original static filenames because the 'archivo' column is missing in DB schema
+    $imageMap = [
+        1 => 'fisio-deportiva.jpg',
+        2 => 'fisio-traumatologica.jpg',
+        3 => 'fisio-pediátrica.jpg',
+        4 => 'fisio-respiratoria.jpg',
+        5 => 'fisio-suelo Pelvico.jpg',
+        6 => 'Osteopatia.jpg'
+    ];
+
+    foreach ($services as &$service) {
+        $serviceId = (int) $service['id'];
+        $service['archivo'] = $imageMap[$serviceId] ?? 'fisio-deportiva.jpg';
+    }
+
     echo json_encode([
         'success' => true,
         'data' => $services

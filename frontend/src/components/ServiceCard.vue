@@ -41,8 +41,10 @@ const formatCurrency = (value: number) => {
 }
 
 .card-img-top {
-  height: 160px;
-  object-fit: cover;
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: contain;
+  background-color: var(--surface);
   transition: transform 0.5s ease;
 }
 

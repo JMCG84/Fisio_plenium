@@ -11,11 +11,28 @@ const password = ref("");
 const loading = ref(false);
 const error = ref("");
 const successMessage = ref("");
+const errors = ref({ nombre: "", email: "", password: "" });
+
+const validateForm = () => {
+  let valid = true;
+  errors.value = { nombre: "", email: "", password: "" };
+
+  if (!nombre.value.trim()) { errors.value.nombre = "El nombre es obligatorio"; valid = false; }
+  if (!email.value.trim()) { errors.value.email = "El correo es obligatorio"; valid = false; }
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) { errors.value.email = "Correo no válido"; valid = false; }
+  if (!password.value) { errors.value.password = "La contraseña es obligatoria"; valid = false; }
+  else if (password.value.length < 6) { errors.value.password = "Debe tener al menos 6 caracteres"; valid = false; }
+
+  return valid;
+};
 
 const handleRegister = async () => {
-  loading.value = true;
   error.value = "";
   successMessage.value = "";
+  
+  if (!validateForm()) return;
+
+  loading.value = true;
   try {
     const response = await axios.post(
       "http://localhost/fisio_Plenium/api/register.php",
@@ -56,7 +73,7 @@ const handleRegister = async () => {
         {{ successMessage }}
       </div>
 
-      <form @submit.prevent="handleRegister">
+      <form @submit.prevent="handleRegister" novalidate>
         <div class="mb-3">
           <label class="form-label small fw-bold text-muted"
             >Nombre Completo</label
@@ -65,9 +82,10 @@ const handleRegister = async () => {
             v-model="nombre"
             type="text"
             class="form-control form-control-lg border-2"
+            :class="{ 'is-invalid border-danger': errors.nombre }"
             placeholder="Juan Pérez"
-            required
           />
+          <span v-if="errors.nombre" class="text-danger small mt-1 d-block">{{ errors.nombre }}</span>
         </div>
         <div class="mb-3">
           <label class="form-label small fw-bold text-muted"
@@ -77,9 +95,10 @@ const handleRegister = async () => {
             v-model="email"
             type="email"
             class="form-control form-control-lg border-2"
+            :class="{ 'is-invalid border-danger': errors.email }"
             placeholder="tu@email.com"
-            required
           />
+          <span v-if="errors.email" class="text-danger small mt-1 d-block">{{ errors.email }}</span>
         </div>
         <div class="mb-4">
           <label class="form-label small fw-bold text-muted">Contraseña</label>
@@ -87,9 +106,10 @@ const handleRegister = async () => {
             v-model="password"
             type="password"
             class="form-control form-control-lg border-2"
+            :class="{ 'is-invalid border-danger': errors.password }"
             placeholder="••••••••"
-            required
           />
+          <span v-if="errors.password" class="text-danger small mt-1 d-block">{{ errors.password }}</span>
         </div>
         <button
           type="submit"

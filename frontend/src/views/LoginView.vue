@@ -11,10 +11,25 @@ const email = ref('');
 const password = ref('');
 const loading = ref(false);
 const error = ref('');
+const errors = ref({ email: '', password: '' });
+
+const validateForm = () => {
+  let valid = true;
+  errors.value = { email: '', password: '' };
+
+  if (!email.value.trim()) { errors.value.email = 'El correo electrónico es obligatorio'; valid = false; }
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) { errors.value.email = 'Correo no válido'; valid = false; }
+  if (!password.value) { errors.value.password = 'La contraseña es obligatoria'; valid = false; }
+
+  return valid;
+};
 
 const handleLogin = async () => {
-  loading.value = true;
   error.value = '';
+  
+  if (!validateForm()) return;
+  
+  loading.value = true;
   try {
     const response = await axios.post('http://localhost/fisio_Plenium/api/login.php', {
       email: email.value,
@@ -49,16 +64,17 @@ const handleLogin = async () => {
         {{ error }}
       </div>
 
-      <form @submit.prevent="handleLogin">
+      <form @submit.prevent="handleLogin" novalidate>
         <div class="mb-3">
           <label class="form-label small fw-bold text-muted">Correo Electrónico</label>
           <input 
             v-model="email" 
             type="email" 
             class="form-control form-control-lg border-2" 
+            :class="{ 'is-invalid border-danger': errors.email }"
             placeholder="tu@email.com" 
-            required
           >
+          <span v-if="errors.email" class="text-danger small mt-1 d-block">{{ errors.email }}</span>
         </div>
         <div class="mb-4">
           <label class="form-label small fw-bold text-muted">Contraseña</label>
@@ -66,9 +82,10 @@ const handleLogin = async () => {
             v-model="password" 
             type="password" 
             class="form-control form-control-lg border-2" 
+            :class="{ 'is-invalid border-danger': errors.password }"
             placeholder="••••••••" 
-            required
           >
+          <span v-if="errors.password" class="text-danger small mt-1 d-block">{{ errors.password }}</span>
         </div>
         <button type="submit" class="btn btn-premium w-100 py-3 mb-3" :disabled="loading">
           <span v-if="loading" class="spinner-border spinner-border-sm me-2"></span>

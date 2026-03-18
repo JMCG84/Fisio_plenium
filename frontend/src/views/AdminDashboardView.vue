@@ -6,6 +6,14 @@ import type { Pedido } from '../types';
 const pedidos = ref<Pedido[]>([]);
 const loading = ref(true);
 const error = ref<string | null>(null);
+const statusMessage = ref<{ type: 'success' | 'danger', text: string } | null>(null);
+
+const showStatus = (text: string, type: 'success' | 'danger' = 'success') => {
+  statusMessage.value = { text, type };
+  setTimeout(() => {
+    statusMessage.value = null;
+  }, 4000);
+};
 
 const fetchReservations = async () => {
   loading.value = true;
@@ -36,13 +44,14 @@ const updateStatus = async (pedidoId: number, newStatus: string) => {
       const index = pedidos.value.findIndex(p => p.id === pedidoId);
       if (index !== -1) {
         pedidos.value[index].estado = newStatus as any;
+        showStatus(`Reserva #${pedidoId} marcada como ${newStatus}`);
       }
     } else {
-      alert('Error al actualizar estado: ' + response.data.message);
+      showStatus('Error: ' + response.data.message, 'danger');
     }
   } catch (err) {
     console.error('Error updating reservation status:', err);
-    alert('No se pudo actualizar el estado de la reserva.');
+    showStatus('No se pudo actualizar el estado de la reserva.', 'danger');
   }
 };
 
@@ -74,6 +83,16 @@ onMounted(fetchReservations);
 
 <template>
   <div class="container py-5">
+    <!-- Feedback Message -->
+    <Transition name="fade">
+      <div v-if="statusMessage" 
+           class="alert position-fixed bottom-0 end-0 m-4 shadow-lg border-0 px-4 py-3 animate-fade-in" 
+           :class="'alert-' + statusMessage.type"
+           style="z-index: 1050; min-width: 300px;">
+        {{ statusMessage.text }}
+      </div>
+    </Transition>
+
     <div class="d-flex justify-content-between align-items-center mb-5">
       <div>
         <h1 class="fw-bold mb-0">Panel de Administración</h1>
@@ -97,7 +116,9 @@ onMounted(fetchReservations);
       <p class="text-muted">No hay ninguna reserva registrada en el sistema.</p>
     </div>
 
-    <div v-else class="table-responsive bg-white rounded-4 shadow-sm p-3">
+
+
+    <div v-else class="table-responsive premium-card p-3 border-0">
       <table class="table table-hover align-middle">
         <thead class="text-muted small text-uppercase">
           <tr>
@@ -163,8 +184,8 @@ onMounted(fetchReservations);
 <style scoped>
 .table th { border-top: none; }
 .badge { font-weight: 600; letter-spacing: 0.5px; font-size: 0.75rem; }
-.hover-green:hover { background-color: #d1e7dd !important; }
-.hover-red:hover { background-color: #f8d7da !important; }
+.hover-green:hover { background-color: rgba(25, 135, 84, 0.1) !important; color: #198754 !important; }
+.hover-red:hover { background-color: rgba(220, 53, 69, 0.1) !important; color: #dc3545 !important; }
 
 .table-hover tbody tr:hover {
   background-color: rgba(0, 74, 173, 0.02);

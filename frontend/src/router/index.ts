@@ -13,7 +13,8 @@ const router = createRouter({
     {
       path: '/reserva',
       name: 'reserva',
-      component: () => import('../views/ReservaView.vue')
+      component: () => import('../views/ReservaView.vue'),
+      meta: { requiresAuth: true }
     },
     {
       path: '/login',
@@ -38,6 +39,8 @@ router.beforeEach((to, from, next) => {
   const authStore = useAuthStore();
   
   if (to.meta.requiresAdmin && !authStore.isAdmin) {
+    next({ name: 'login' });
+  } else if (to.meta.requiresAuth && !authStore.isAuthenticated) {
     next({ name: 'login' });
   } else {
     next();

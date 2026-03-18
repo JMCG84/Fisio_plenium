@@ -1,12 +1,21 @@
 <script setup lang="ts">
 import { useCartStore } from '../stores/cart';
 import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
 
 const cartStore = useCartStore();
 const { items, totalAmount, totalCount } = storeToRefs(cartStore);
+const router = useRouter();
 
-const formatCurrency = (value: number) => {
-  return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(value);
+const goToReserva = () => {
+  // Let Bootstrap begin offcanvas exit transition, then route
+  setTimeout(() => {
+    router.push({ name: 'reserva' });
+  }, 300);
+};
+
+const formatCurrency = (value: number | string) => {
+  return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(Number(value));
 };
 </script>
 
@@ -51,14 +60,14 @@ const formatCurrency = (value: number) => {
           <span class="text-muted fw-medium">Precio Total</span>
           <span class="fs-4 fw-bold gradient-text">{{ formatCurrency(totalAmount) }}</span>
         </div>
-        <router-link 
-          to="/reserva" 
+        <button 
+          @click="goToReserva"
           class="btn btn-premium w-100 py-3 mt-2" 
-          :class="{ disabled: totalCount === 0 }"
+          :disabled="totalCount === 0"
           data-bs-dismiss="offcanvas"
         >
           Confirmar Reserva
-        </router-link>
+        </button>
       </div>
     </div>
   </div>
