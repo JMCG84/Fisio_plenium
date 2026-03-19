@@ -1,5 +1,7 @@
 # Fisio Plenium - Proyecto Final de Grado Superior
 
+https://github.com/user-attachments/assets/d8826a5c-cc08-4771-9f70-43be47f43dba
+
 Este proyecto es el resultado de la migración y modernización de una aplicación de gestión para una clínica de fisioterapia. Se trata del proyecto final de mi Grado Superior, el cual ha sido transformado desde una arquitectura base en PHP clásico hacia una aplicación moderna utilizando Vue 3 y una API desacoplada.
 
 Esta evolución se ha llevado a cabo con el apoyo de herramientas de Inteligencia Artificial, aplicando los conocimientos y técnicas adquiridas en el curso de desarrollo con IA para optimizar el flujo de trabajo, mejorar la calidad del código y acelerar la transición hacia tecnologías de vanguardia.
